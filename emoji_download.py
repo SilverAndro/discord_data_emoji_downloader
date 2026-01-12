@@ -51,7 +51,6 @@ def handle(message_content):
     print(f"\rParsed {message_count} messages with {len(seen_emoji)} emojis used a total of {sum(seen_emoji.values())} times", end="")
 
 for dir in names:
-    clean_dir = dir.replace("Messages\\", "")[1::]
     with open(f"{dir}/messages.json", "r", encoding='utf-8') as m_list:
         for m in json.load(m_list):
             handle(m["Contents"])
