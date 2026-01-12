@@ -67,9 +67,9 @@ root = "Emoji_Dump"
 if os.path.isdir(root):
     shutil.rmtree(root)
 for x in range(len(thresholds)+1):
-    os.makedirs(f"{root}/split_{x+1}")
+    os.makedirs(f"{root}")
+    
 
-session = requests.Session()
 for emoji_id in seen_emoji:
     count = seen_emoji[emoji_id]
     url = f"https://cdn.discordapp.com/emojis/{emoji_id}.webp"
