@@ -50,12 +50,11 @@ def handle(message_content):
         emoji_names[id] = name
     print(f"\rParsed {message_count} messages with {len(seen_emoji)} emojis used a total of {sum(seen_emoji.values())} times", end="")
 
-with open("result.txt", "w") as output:
-    for dir in names:
-        clean_dir = dir.replace("Messages\\", "")[1::]
-        with open(f"{dir}/messages.json", "r", encoding='utf-8') as m_list:
-            for m in json.load(m_list):
-                handle(m["Contents"])
+for dir in names:
+    clean_dir = dir.replace("Messages\\", "")[1::]
+    with open(f"{dir}/messages.json", "r", encoding='utf-8') as m_list:
+        for m in json.load(m_list):
+            handle(m["Contents"])
 
 print("\nDone reading messages")
 old_count = len(seen_emoji)
