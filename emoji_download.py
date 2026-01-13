@@ -38,6 +38,10 @@ def handle(message_content):
 
         start_id = message_content.index(":", i + 2)
         end_id = message_content.index(">", i + 2)
+        
+        if start_id == -1 or end_id == -1:
+            start = start + 2
+            break
 
         start = end_id
         id = message_content[start_id+1:end_id]
