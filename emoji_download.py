@@ -71,7 +71,7 @@ root = "Emoji_Dump"
 if os.path.isdir(root):
     shutil.rmtree(root)
 for x in range(len(thresholds)+1):
-    os.makedirs(f"{root}")
+    os.makedirs(f"{root}/split_{x+1}")
     
 
 for emoji_id in seen_emoji:
