@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 import os
 import shutil
@@ -36,9 +37,13 @@ def handle(message_content):
         if i == -1:
             break
 
-        start_id = message_content.index(":", i + 2)
-        end_id = message_content.index(">", i + 2)
-        
+        try:
+            start_id = message_content.index(":", i + 2)
+            end_id = message_content.index(">", i + 2)
+        except ValueError:
+            start = i + 2
+            continue
+
         if start_id == -1 or end_id == -1:
             start = start + 2
             break
@@ -52,7 +57,7 @@ def handle(message_content):
         else:
             seen_emoji[id] = seen_emoji[id] + 1
         emoji_names[id] = name
-        
+
     if message_count % 43 == 0:
         print(f"\rParsed {message_count} messages with {len(seen_emoji)} emojis used a total of {sum(seen_emoji.values())} times", end="")
 
@@ -74,7 +79,7 @@ if os.path.isdir(root):
     shutil.rmtree(root)
 for x in range(len(thresholds)+1):
     os.makedirs(f"{root}/split_{x+1}")
-    
+
 
 for emoji_id in seen_emoji:
     count = seen_emoji[emoji_id]
