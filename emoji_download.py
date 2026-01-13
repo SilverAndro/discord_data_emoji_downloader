@@ -52,7 +52,9 @@ def handle(message_content):
         else:
             seen_emoji[id] = seen_emoji[id] + 1
         emoji_names[id] = name
-    print(f"\rParsed {message_count} messages with {len(seen_emoji)} emojis used a total of {sum(seen_emoji.values())} times", end="")
+        
+    if message_count % 43 == 0:
+        print(f"\rParsed {message_count} messages with {len(seen_emoji)} emojis used a total of {sum(seen_emoji.values())} times", end="")
 
 for dir in names:
     with open(f"{dir}/messages.json", "r", encoding='utf-8') as m_list:
